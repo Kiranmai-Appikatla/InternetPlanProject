@@ -23,14 +23,13 @@ public class InternetPlanController {
 	InternetPlanService service;
 
 	@GetMapping("/")
-	public void home() {
-		System.out.println("CRUD Service is running");
+	public String home() {
+		return "CRUD Service is running";
 	}
 	
 	@PostMapping("/Add")
 	public InternetPlanEntity add(@RequestBody InternetPlanEntity object) {
-		service.add(object);
-		return object;
+		return service.add(object);
 	}
 	
 	@GetMapping("/DisplayAll")

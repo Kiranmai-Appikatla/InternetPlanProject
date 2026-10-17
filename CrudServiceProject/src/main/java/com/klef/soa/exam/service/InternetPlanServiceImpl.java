@@ -15,8 +15,8 @@ public class InternetPlanServiceImpl implements InternetPlanService{
 	@Autowired
 	InternetPlanRepository repo;
 	
-	public void add(InternetPlanEntity entity) {
-		repo.save(entity);
+	public InternetPlanEntity add(InternetPlanEntity entity) {
+		return repo.save(entity);
 	}
 	
 	public List<InternetPlanEntity> displayall(){

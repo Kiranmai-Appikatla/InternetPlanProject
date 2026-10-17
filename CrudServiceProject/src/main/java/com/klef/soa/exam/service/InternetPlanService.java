@@ -9,7 +9,7 @@ import com.klef.soa.exam.entity.InternetPlanEntity;
 
 public interface InternetPlanService {
 
-	void add(InternetPlanEntity object);
+	InternetPlanEntity add(InternetPlanEntity object);
 
 	List<InternetPlanEntity> displayall();
 
