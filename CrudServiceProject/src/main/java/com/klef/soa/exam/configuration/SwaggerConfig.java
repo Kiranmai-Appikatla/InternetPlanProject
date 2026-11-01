@@ -15,9 +15,9 @@ public class SwaggerConfig
     {
         return new OpenAPI()
                 .info(new Info()
-                        .title("Product Service API")
+                        .title("Internet Plan API")
                         .version("1.0")
-                        .description("REST API Documentation for Patient Microservice")
+                        .description("REST API for internet plans: add, list, update, and delete")
                         .contact(new Contact()
                                 .name("KLUniversity")
                                 .email("demo@example.com")));

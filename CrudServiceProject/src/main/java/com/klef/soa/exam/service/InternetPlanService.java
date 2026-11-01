@@ -13,6 +13,8 @@ public interface InternetPlanService {
 
 	List<InternetPlanEntity> displayall();
 
+	InternetPlanEntity update(InternetPlanEntity object);
+
 	String delete(Long id);
 
 }

@@ -1,0 +1,33 @@
+name: Build and check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build and start
+        run: docker compose up -d --build
+
+      - name: Check backend, Swagger, and frontend
+        run: |
+          for i in $(seq 1 30); do
+            if curl -sf http://localhost:8081/InternetPlan/; then
+              break
+            fi
+            if [ "$i" -eq 30 ]; then
+              docker compose logs
+              exit 1
+            fi
+            sleep 5
+          done
+          curl -sf http://localhost:8081/v3/api-docs | grep -q "Internet Plan API"
+          curl -sf -o /dev/null http://localhost:8081/swagger-ui/index.html
+          curl -sf -o /dev/null http://localhost:3000/
+          curl -sf -o /dev/null http://localhost:3000/swagger-ui/index.html

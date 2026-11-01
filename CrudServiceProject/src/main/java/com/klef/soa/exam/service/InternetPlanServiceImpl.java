@@ -1,7 +1,6 @@
 package com.klef.soa.exam.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,12 +22,19 @@ public class InternetPlanServiceImpl implements InternetPlanService{
 		return repo.findAll();
 	}
 	
-	public String delete(Long id) {
-		Optional<InternetPlanEntity> entity=repo.findById(id);
-		if(entity==null) {
-			return "User with this id does not exist";
+	public InternetPlanEntity update(InternetPlanEntity entity) {
+		if (entity.getId() == null || !repo.existsById(entity.getId())) {
+			return null;
 		}
-		return "User deleted successfully";
+		return repo.save(entity);
+	}
+
+	public String delete(Long id) {
+		if (!repo.existsById(id)) {
+			return "Plan with this id does not exist";
+		}
+		repo.deleteById(id);
+		return "Plan deleted successfully";
 	}
 
 	
